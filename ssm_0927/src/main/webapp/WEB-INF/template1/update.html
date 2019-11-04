@@ -1,0 +1,26 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>修改主页面</title>
+</head>
+<body  align="center">
+<h3>修改员工</h3>
+<form action="update.do" method="post">
+    <center>
+    <input type="hidden" name="eid" th:value="${emp.eid}" ><br>
+    姓名:<input type="text" name="name"  th:value="${emp.name}"  ><br>
+    年龄:<input type="text" name="age"  th:value="${emp.age}"  ><br>
+    性别:男.<input type="radio"  name="sex" th:value="男" th:checked="${emp.sex eq '男'}" >
+    女.<input type="radio" name="sex" th:value="女" th:checked="${emp.sex eq '女'}"><br>
+    邮箱:<input type="text" name="mail" th:value="${emp.mail}" placeholder="登录名@主机名.域名"><br>
+    爱好:<input type="text" name="ah"  th:value="${emp.ah}"  ><br>
+    部门:<select name="did">
+        <option th:each="dept:${deptlist}"  th:value="${dept.did}" th:text="${dept.deptbh}" th:selected="${emp.did eq dept.did}"></option>
+    </select><br>
+    角色:
+    <a th:href="list.do">返回</a>
+    <input type="submit" value="确定修改">
+    </center>
+</form>
+</body>
+</html>

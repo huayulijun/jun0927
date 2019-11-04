@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huayu.ssm.mapper.DeptMapper">
+    <!--删除dape-->
+    <delete id="deletedape" parameterType="int">
+        delete from dept where did=#{did}
+    </delete>
+
+    <!--添加dape-->
+    <insert id="insertdept" parameterType="dept">
+        insert into dept(deptbh) values(#{deptbh})
+    </insert>
+
+    <select id="deptbyid" parameterType="int" resultType="dept">
+        select * from dept where did=#{did}
+    </select>
+
+    <update id="updatedept" parameterType="dept" >
+        update dept set deptbh=#{deptbh} where did=#{did}
+    </update>
+
+    <select id="listDept" resultType="dept">
+        select * from dept
+    </select>
+
+</mapper>

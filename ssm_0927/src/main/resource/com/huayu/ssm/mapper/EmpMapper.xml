@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huayu.ssm.mapper.EmpMapper">
+
+    <!--模糊查询-->
+    <select id="queryAll" parameterType="emp" resultMap="emp_left_dept">
+        select e.*,d.deptbh from emp e left join dept d on e.did=d.did
+        <trim prefix="where" prefixOverrides="and">
+            <if test="name!=null and name!='' ">
+                and e.name like '%${name}%'
+            </if>
+            <if test="sex!=null and sex!=''">
+                and e.sex like '%${sex}%'
+            </if>
+            <if test="did!=null and did!=''">
+                and d.did=#{did}
+            </if>
+        </trim>
+    </select>
+
+    <!--嵌套结果开始 多对一 查询所有 -->
+    <resultMap id="emp_left_dept" type="emp">
+        <result column="did" property="did"></result>
+        <result column="did" property="dept.did"></result>
+        <result column="deptbh" property="dept.deptbh"></result>
+        <result column="deptbh" property="deptbh"></result>
+    </resultMap>
+    <!--嵌套结果结束 -->
+
+    <!--删除数据-->
+    <delete id="deleteemp" parameterType="int">
+        delete  from emp where eid=#{eid}
+    </delete>
+
+    <!--添加数据-->
+    <insert id="insertemp" parameterType="emp">
+        insert into emp(name,age,sex,mail,ah,rztime,did) values(#{name},#{age},#{sex},#{mail},#{ah},#{rztime},#{did})
+    </insert>
+
+    <!--查询一条-->
+    <select id="selectbyid" parameterType="int" resultType="emp">
+        select * from emp where eid=#{eid}
+    </select>
+
+    <!--修改一条-->
+    <update id="updateemp" parameterType="emp">
+        update emp set name=#{name},age=#{age},sex=#{sex},mail=#{mail},ah=#{ah},rztime=#{rztime},did=#{did} where eid=#{eid}
+    </update>
+
+    <!--查询部门dept-->
+    <select id="selectdept" resultType="dept">
+        select * from dept;
+    </select>
+
+    <!--查询角色-->
+    <select id="queryrole" resultType="role">
+        select * from role
+    </select>
+
+    <!--查询角色id-->
+    <select id="rolebyid" parameterType="int" resultType="role">
+        select * from role where roleid=#{roleid}
+    </select>
+
+    <!--查询总条数-->
+    <select id="countemp" resultType="int">
+        select count(*) from emp;
+    </select>
+
+
+
+</mapper>
