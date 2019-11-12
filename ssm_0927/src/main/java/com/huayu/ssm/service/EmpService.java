@@ -21,8 +21,8 @@ public class EmpService extends ServiceImpl<EmpMapper,Emp>{
     private EmpMapper empMapper;
 
     //查询所有
-    public PageList queryAll(Emp emp, Integer nowpage){
-        Page page = PageHelper.startPage(nowpage,4);
+    public PageList queryAll(Emp emp, Integer nowpage,Integer limit){
+        Page page = PageHelper.startPage(nowpage,limit);
         List<Emp> list=empMapper.queryAll(emp);
         Long i=page.getTotal();
         PageList pageList=new PageList(list,i.intValue());
@@ -30,9 +30,21 @@ public class EmpService extends ServiceImpl<EmpMapper,Emp>{
     }
 
 
+    //查询所有
+    public List<Emp> queryAll(com.huayu.ssm.ob.Emp emp){
+        List<Emp> list = empMapper.queryAll(emp);
+        return list;
+    }
+
+
     //删除
     public void deleteemp(Integer eid){
        empMapper.deleteemp(eid);
+    }
+
+    //添加
+    public void insertemp(com.huayu.ssm.ob.Emp emp){
+        empMapper.insertemp(emp);
     }
 
     //添加

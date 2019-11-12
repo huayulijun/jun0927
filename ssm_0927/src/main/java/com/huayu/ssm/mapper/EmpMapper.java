@@ -10,10 +10,14 @@ import java.util.List;
 public interface EmpMapper extends BaseMapper<Emp> {
     //模糊查询
     public List<Emp> queryAll(Emp emp);
+    //模糊查询
+    public List<Emp> queryAll(com.huayu.ssm.ob.Emp emp);
     //删除
     public void deleteemp(Integer eid);
     //添加
     public void insertemp(Emp emp);
+    //添加
+    public void insertemp(com.huayu.ssm.ob.Emp emp);
     //查询一条
     public Emp selectbyid(Integer eid);
     //修改

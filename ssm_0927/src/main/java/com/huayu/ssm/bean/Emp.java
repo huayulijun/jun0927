@@ -1,33 +1,33 @@
 package com.huayu.ssm.bean;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-
-import javax.xml.crypto.Data;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @TableName("emp")
 public class Emp {
-    @TableId("eid")
-    private  Integer eid;
-    private  String name;
-    private  String age;
-    private  String sex;
-    private String mail;
-    private  String ah;
-    private Dept dept;
-    private String did;
-    private Set<Role> listrole = new HashSet<>();
-    private Set<Dept> listemp = new HashSet<>();
-    private Emp emp;
-    private String mgr;
-    private List<Gzjl> gzlist;
+    @TableId(value = "eid",type = IdType.AUTO)
+    public   Integer eid;
+    public  String name;
+    public  String age;
+    public  String sex;
+    public String mail;
+    public  String ah;
+    public String rztime;
+    public String did;
+    public Dept dept;
+    public Set<Role> listrole = new HashSet<>();
+    public Set<Dept> listemp = new HashSet<>();
+    public Emp emp;
+    public String mgr;
+    public List<Gzjl> gzlist;
     @TableField("deptbh")
-    private String deptbh;
-    private String rztime;
+    public String deptbh;
+
 
     public String getRztime() {
         return rztime;
